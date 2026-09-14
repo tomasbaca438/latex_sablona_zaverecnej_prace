@@ -1,0 +1,60 @@
+\priloha{Štatistické údaje o dokumente}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Štatistika o dokumente}
+	\label{tab:statistika_o_dokumente}
+	
+	\begin{tabularx}{0.8\linewidth}{X c}
+		\toprule
+		\textbf{Štatistika} & \textbf{Hodnota} \\
+		\midrule
+		
+		\multicolumn{2}{l}{\textbf{Štruktúra dokumentu}} \\
+		
+		Celkový počet strán & \pageref{LastPage} \\
+		Počet strán od úvodu po záver 
+		& \the\numexpr\getpagerefnumber{text-end}-\getpagerefnumber{text-start}+1\relax \\
+		Počet sekcií & \total{section} \\
+		Počet podsekcií & \total{totalsubsections} \\
+		Počet podpodsekcií & \total{totalsubsubsections} \\
+		Počet odsekov (paragraph) & \total{totalparagraphs} \\
+		Počet pododsekov (subparagraph) & \total{totalsubparagraphs} \\
+		Počet príloh & \total{appendix} \\
+		
+		\midrule
+		
+		\multicolumn{2}{l}{\textbf{Obsah}} \\
+		
+		Počet obrázkov & \total{totalfigures} \\
+		Počet tabuliek & \total{totaltables} \\
+		Počet rovníc & \total{totalequations} \\
+		
+		\midrule
+		
+		\multicolumn{2}{l}{\textbf{Zdroje}} \\
+		
+		Počet použitých zdrojov & \total{references} \\
+		Počet citácií & \total{citations} \\
+		
+		\midrule
+		
+		\multicolumn{2}{l}{\textbf{Slovníky}} \\
+		
+		Počet skratiek & \total{acronymcount} \\
+		Počet symbolov & \total{symbolcount} \\
+		Počet pojmov & \total{termcount} \\
+		
+		\bottomrule
+	\end{tabularx}
+	
+	\smallskip
+	\begin{center}
+		{\footnotesize Zdroj: Automaticky generované LaTeXom}
+	\end{center}
+\end{table}
+
+
+LaTeX šablóna v slovenčine je k dispozícií na: \url{https://github.com/tomasbaca438/latex_sablona_zaverecnej_prace}.
+
+LaTeX šablóna v angličtine je k dispozícií na: \url{https://github.com/tomasbaca438/LaTeX_final_thesis_template}.

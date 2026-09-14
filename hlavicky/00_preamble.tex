@@ -1,0 +1,265 @@
+\documentclass[12pt,slovak,a4paper]{article}
+\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+\setmainfont[
+	Path = fonts/,
+	UprightFont = *-Regular.otf,
+	BoldFont = *-Bold.otf,
+	ItalicFont = *-It.otf,
+	OpticalSize = 12,
+]{SourceSerif4}
+\usepackage{graphicx}
+\usepackage[slovak]{babel}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{siunitx}
+\sisetup{per-mode=symbol, detect-all}
+\usepackage{eurosym}
+\usepackage{makecell}
+\usepackage{unicode-math}
+\setmathfont{Cambria Math}
+\usepackage[nottoc]{tocbibind}
+\setlength{\parskip}{0.5em}
+\usepackage[ a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=2.5cm]{geometry}
+\usepackage{tocloft}
+\colorlet{light-gray}{gray!20} 
+\usepackage[toc,page]{appendix}
+\usepackage{setspace}
+\onehalfspacing
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\usepackage[acronym,nomain,nonumberlist,nolangwarn]{glossaries-extra}
+\glsnoexpandfields
+\newglossary[alg]{acronyms}{acr}{acn}{Zoznam skratiek}
+\newglossary[slg]{symbols}{sym}{sbl}{Zoznam symbolov}
+\newglossary[tlg]{terms}{trm}{tbl}{Slovník pojmov}
+\makeglossaries
+
+\usepackage{longtable}
+
+\newglossarystyle{acronymtable}{ 
+	\renewenvironment{theglossary} 
+	{\begin{longtable}{|p{0.15\textwidth}|p{0.35\textwidth}|p{0.4\textwidth}|} 
+			\hline 
+			\textbf{Skratka} & \textbf{Anglický význam} & \textbf{Slovenský význam}  \\ 
+			\hline 
+			\endhead} 
+		{\end{longtable}} 
+	
+	\renewcommand*{\glossentry}[2]{%
+		\glsentryname{##1} & % skratka
+		\glsentryuseri{##1}  & % anglicky význam
+		\glsentrydesc{##1} % slovensky význam
+		\\ 
+		\hline 
+	} 
+	\renewcommand*{\glsgroupskip}{} 
+}
+
+
+\newglossarystyle{symboltable}{
+	\renewenvironment{theglossary}
+	{\begin{longtable}{|p{0.15\textwidth}|p{0.30\textwidth}|p{0.45\textwidth}|}
+			\hline
+			\textbf{Symbol} & \textbf{Jednotka} & \textbf{Význam symbolu} \\
+			\hline
+			\endhead}
+		{\end{longtable}}
+	
+	\renewcommand*{\glossentry}[2]{%
+		\glsentryname{##1} &     % symbol
+		\glsentryuserii{##1} [\glsentryuseri{##1}] &    % jednotka (user1)
+		\glsentrydesc{##1} \\    % význam
+		\hline
+	}
+	
+	\renewcommand*{\glsgroupskip}{}
+}
+
+\usepackage{pdfpages}
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\usepackage{xurl}
+\usepackage[colorlinks,allcolors=black]{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Overleaf Example},
+	pdfpagemode=FullScreen,
+	breaklinks=true
+}
+\setlength{\headheight}{13.6pt}
+\usepackage{lastpage}
+
+\usepackage{totcount}
+
+\newtotcounter{appendix}
+\newcounter{priloha}
+\newcommand{\priloha}[1]{%
+	\stepcounter{priloha}% 
+	\stepcounter{appendix}%
+	\section*{Príloha \Alph{priloha}: #1}%
+	\addcontentsline{apr}{section}{Príloha \Alph{priloha}: #1}% 
+}
+
+\makeatletter
+\newcommand{\startappendixnumbers}{%
+	\renewcommand{\thefigure}{P.\arabic{figure}}
+	\renewcommand{\thetable}{P.\arabic{table}}
+	\renewcommand{\theequation}{P.\arabic{equation}}
+}
+\makeatother
+
+\makeatletter
+\newcommand{\listofprilohy}{
+	\section*{Zoznam príloh}
+	\@starttoc{apr}
+	\newpage
+}
+\makeatother
+
+\usepackage{chngcntr} 
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\numberwithin{equation}{section}
+\usepackage{tabularx}
+\usepackage{etoolbox}
+\preto\section{\clearpage}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{bibliografia/zaverecna_praca.bib}
+
+\fancypagestyle{plainnohead}{
+	\fancyhf{}
+	\fancyfoot[C]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+
+% ----- Image path -----
+\graphicspath{{obrazky/}}
+
+\setlength{\headheight}{14.5pt}
+
+\makeatletter
+\newcommand{\prilohytitlepage}{
+	\clearpage
+	\phantomsection
+	\addcontentsline{toc}{section}{Prílohy}
+	\vspace*{\fill}
+	\begin{center}
+		{\Huge \textbf{Prílohy}}
+	\end{center}
+	\vspace*{\fill}
+	\newpage
+}
+\makeatother
+
+\newtotcounter{totalfigures}
+\newtotcounter{totaltables}
+\newtotcounter{totalequations}
+
+\AtBeginEnvironment{figure}{% 
+	\stepcounter{totalfigures}% 
+} 
+
+\AtBeginEnvironment{table}{% 
+	\stepcounter{totaltables}% 
+} 
+
+\AtBeginEnvironment{equation}{% 
+	\stepcounter{totalequations}% 
+}
+
+\regtotcounter{section}
+
+\newtotcounter{totalsubsections}
+\newtotcounter{totalsubsubsections} 
+
+\pretocmd{\subsection} 
+	{\stepcounter{totalsubsections}} 
+	{}{} 
+
+\pretocmd{\subsubsection} 
+	{\stepcounter{totalsubsubsections}} 
+	{}{}
+	
+\newtotcounter{totalparagraphs}
+\newtotcounter{totalsubparagraphs} 
+
+\pretocmd{\paragraph} 
+	{\stepcounter{totalparagraphs}} 
+	{}{} 
+
+\pretocmd{\subparagraph} 
+	{\stepcounter{totalsubparagraphs}} 
+	{}{}
+
+\newtotcounter{references}
+\AtEveryBibitem{% 
+	\stepcounter{references} 
+}
+\usepackage{xstring}
+
+\newtotcounter{citations}
+
+\let\oldcite\cite 
+\renewcommand{\cite}[1]{% 
+	\StrCount{#1}{,}[\tempcount]% 
+	\addtocounter{citations}{\numexpr\tempcount+1\relax}% 
+	\oldcite{#1}% 
+}
+
+\newtotcounter{acronymcount}
+\newtotcounter{symbolcount}
+\newtotcounter{termcount}
+
+\newcommand{\newacronymentry}[2]{%
+	\stepcounter{acronymcount}%
+	\newglossaryentry{#1}{type=acronyms,#2}% 
+}
+
+\newcommand{\newsymbolentry}[2]{%
+	\stepcounter{symbolcount}%
+	\newglossaryentry{#1}{type=symbols,#2}%
+}
+
+\newcommand{\newtermentry}[2]{%
+	\stepcounter{termcount}%
+	\newglossaryentry{#1}{type=terms,#2}%
+}
+
+\usepackage{booktabs}
+
+\newcommand{\pocetStran}{\pageref{LastPage}}
+
+% --- Page range macro (textual, no arithmetic, PDF + EPUB safe) ---
+\newcommand{\pocetStranUV}{\pageref{text-start}--\pageref{text-end}}
+
+
+\newcommand{\pocetSekcii}{\total{section}}
+\newcommand{\pocetPodsekcii}{\total{totalsubsections}}
+\newcommand{\pocetPodpodsekcii}{\total{totalsubsubsections}}
+\newcommand{\pocetOdsekov}{\total{totalparagraphs}}
+\newcommand{\pocetPododsekov}{\total{totalsubparagraphs}}
+\newcommand{\pocetPriloh}{\total{appendix}}
+
+\newcommand{\pocetObrazkov}{\total{totalfigures}}
+\newcommand{\pocetTabuliek}{\total{totaltables}}
+\newcommand{\pocetRovnic}{\total{totalequations}}
+
+\newcommand{\pocetZdroje}{\total{references}}
+\newcommand{\pocetCitacii}{\total{citations}}
+
+\newcommand{\pocetSkratiek}{\total{acronymcount}}
+\newcommand{\pocetSymbolov}{\total{symbolcount}}
+\newcommand{\pocetPojmov}{\total{termcount}}
