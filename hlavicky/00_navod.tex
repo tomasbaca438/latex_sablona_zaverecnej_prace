@@ -64,11 +64,14 @@ Install missing packages on-the-fly = Yes
 
 -------------------------------------------------------------------------------
 
+\iffalse
 ## Nastavenie TeXStudio
+
+Prejdite do Options → Configure TeXstudio
 
 V nastaveniach aktivujte:
 
-Advanced Options
+Show Advanced Options
 
 Potom prejdite do:
 
@@ -82,6 +85,30 @@ txs:///makeglossaries |
 txs:///lualatex |
 txs:///lualatex |
 txs:///view
+
+Potom prejdite do:
+
+Build → Meta Commands → Default Compiler
+
+a nastavte:
+
+LuaLaTeX
+
+Potom prejdite do:
+
+Build → Meta Commands → Default Viewer
+
+a nastavte:
+
+PDF Viewer
+
+Potom prejdite do:
+
+Build → Meta Commands → Default Bibliography Tool
+
+a nastavte:
+
+Biber
 
 -------------------------------------------------------------------------------
 
