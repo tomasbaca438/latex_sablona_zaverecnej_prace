@@ -255,3 +255,7 @@ $
 ```
 
 Tieto znaky a značky môžu spôsobovať problémy pri kompilácii pomocou LuaLaTeX.
+
+# Šablóna v angličtine 
+
+https://github.com/tomasbaca438/LaTeX_final_thesis_template
