@@ -106,7 +106,7 @@ Obsahuje:
 
 - údaje na titulnej strane,
 - hlavičky strán,
-- abstrakty.
+- údaje na hlavičkách abstraktov.
 
 ---
 
