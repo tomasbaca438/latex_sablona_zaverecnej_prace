@@ -1,5 +1,5 @@
-# Šablóna záverečnej práce
-
+# Šablóna záverečnej práce a prezentácie
+ 
 ## Informácie o projekte
 
 - **Autor:** Ing. Tomáš Bača
