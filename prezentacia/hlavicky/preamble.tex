@@ -1,0 +1,68 @@
+\documentclass[12pt]{beamer}
+\usetheme{metropolis}
+\usepackage{fontspec}
+\setmainfont[
+Path = fonts/,
+	UprightFont = *-Regular.otf,
+	BoldFont = *-Bold.otf,
+	ItalicFont = *-It.otf,
+	OpticalSize = Auto,
+]{SourceSerif4}
+\usepackage{mathtools}
+\usepackage{unicode-math}
+\setmathfont{Cambria Math}
+\usepackage[slovak]{babel}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{varwidth}
+\usepackage{siunitx}
+\usepackage{csquotes}
+
+\makeatletter
+\setbeamertemplate{footline}{
+	\hfill
+	{\fontsize{10pt}{12pt}\selectfont \insertframenumber{} / \inserttotalframenumber}
+	\hspace*{2ex}
+}
+\makeatother
+
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=none
+]{biblatex}
+
+\addbibresource{bibliography/prezentacia.bib}
+\defbibheading{bibliography}{}
+
+\usepackage[acronym,nomain,nonumberlist,nolangwarn]{glossaries-extra}
+\glsnoexpandfields
+
+\newglossary[alg]{acronyms}{acr}{acn}{Zoznam skratiek}
+\newglossary[slg]{symbols}{sym}{sbl}{Zoznam symbolov}
+\makeglossaries
+
+\newcommand{\newacronymentry}[2]{%
+	\newglossaryentry{#1}{type=acronyms,#2}%
+}
+
+\newcommand{\newsymbolentry}[2]{%
+	\newglossaryentry{#1}{type=symbols,#2}%
+}
+
+\sisetup{
+	per-mode=symbol,
+	per-symbol=/,
+	detect-all
+}
+\glsdisablehyper
+
+\setbeamerfont{normal text}{size=\large}
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{institute}{size=\normalsize}
